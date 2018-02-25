@@ -29,6 +29,9 @@ module.exports = function install() {
     // built library so we have to just assume success, unfortunately.
     return Promise.resolve();
   }
+  if (!fse.existsSync(path.join(rootPath, "dist/nodegit.js"))) {
+    return Promise.resolve();
+  }
 
   return exec("node \"" + path.join(rootPath, "dist/nodegit.js\""))
     .catch(function(e) {
